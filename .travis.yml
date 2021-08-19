@@ -1,0 +1,10 @@
+#language: generic 
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t leonski13/test-docker -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true leonski13/test-docker npm run test -- --coverage
